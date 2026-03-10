@@ -1,61 +1,38 @@
-<h1 align="center">Análisis de Datos de Plataforma de Streaming</h1>
+<h1 align="center">Análisis de Rotación de Talento Humano</h1>
 
 ## 1. Descripción
-Los datasets de contenido suelen venir en formatos no estructurados, donde múltiples valores se almacenan en una sola columna. Esto dificulta realizar análisis eficientes y consultas complejas.
+La rotación laboral es un desafío crítico para las organizaciones, pues impacta la productividad y genera costos adicionales de reclutamiento y capacitación. Este proyecto busca identificar los factores clave que influyen en la rotación de empleados, para apoyar la implementación de estrategias efectivas de retención.
 
-El objetivo de este proyecto es transformar un dataset crudo de Netflix en una base de datos relacional estructurada, aplicando principios de:
-Modelado de datos
-Normalización de bases de datos
-Consultas analíticas en MySQL
-
-A partir del dataset Netflix.csv, se diseña una base de datos que permite almacenar, consultar y analizar información sobre títulos, géneros, países y clasificaciones del catálogo de Netflix.
+Se analizan variables como nivel educativo, salario, antigüedad, horas extras y grupo etario para descubrir patrones asociados con el abandono de la empresa. El análisis se realizó íntegramente en Python mediante técnicas de análisis exploratorio y visualización de datos.
 
 ---
 ## 2. Dataset
-El dataset contiene información sobre películas y series disponibles en Netflix, incluyendo metadatos del contenido.
-
-| Campo        | Tipo MySQL | Descripción                                       |
-| ------------ | ---------- | ------------------------------------------------- |
-| show_id      | INT        | Identificador único del título en el dataset      |
-| title        | VARCHAR    | Nombre de la película o serie                     |
-| description  | TEXT       | Sinopsis corta del contenido                      |
-| release_year | INT        | Año de lanzamiento del título                     |
-| date_added   | DATE       | Fecha en que se agregó a Netflix                  |
-| type         | VARCHAR    | Tipo de contenido: *Movie* o *TV Show*            |
-| rating       | VARCHAR    | Clasificación por edad (ej. TV-14, TV-MA, PG)     |
-| duration     | VARCHAR    | Duración como texto (ej. “109 min” o “3 Seasons”) |
-| countries    | VARCHAR    | País o países de producción (separados por comas) |
-| genres       | VARCHAR    | Género o géneros del título (separados por comas) |
-
-**Diseño de la Base de Datos**
-La base de datos se normalizó para evitar redundancias y soportar análisis:
-
-**Tablas principales/hechos:**
-- **shows** – tabla principal con los títulos  
-- **content_type** – tipo de contenido (Movie o TV Show)  
-- **rating** – clasificación por edad  
-- **country** – países de producción  
-- **genre** – géneros del contenido
-
-**Tablas relaciones/dimensiones:**
-- **shows_country** – relación muchos a muchos entre shows y países  
-- **shows_genre** – relación muchos a muchos entre shows y géneros  
-
-Esto permite consultas flexibles y mantiene la integridad de los datos.
+El dataset utilizado contiene información demográfica y laboral de los empleados, con variables relevantes para el análisis de rotación.
+- Age:	Edad del empleado
+- MonthlyIncome:	Ingreso mensual
+- Education:	Nivel educativo
+- YearsAtCompany:	Antigüedad en la empresa
+- OverTime:	Realiza horas extras (Sí/No)
+- JobLevel:	Nivel jerárquico
+- Attrition: Indica si el empleado abandonó la empresa
 
 ---
 ## 3. Herramientas Utilizadas
-El proyecto se enfoca en el uso de SQL para estructurar y analizar datasets reales en un entorno de base de datos.
+- Python con librerías como Pandas para la manipulación y limpieza de datos; Matplotlib y Seaborn para la visualización.
 
 ---
 ## 4. Análisis
-Se aplicaron principios de normalización para convertir el dataset original en una base de datos relacional:
-**Normalización Aplicada**
-- **1NF**: Se eliminaron atributos como múltiples géneros o países en una sola celda.  
-- **2NF**: Se separaron entidades para eliminar dependencias parciales.  
-- **3NF**: Todos los atributos dependen únicamente de la clave primaria, evitando dependencias transitivas y redundancia de datos.
+El análisis siguió estos pasos clave:
+- Limpieza y preprocesamiento de datos (valores faltantes, duplicados, tipos de datos)
+- Análisis exploratorio de variables demográficas y laborales
+- Estudio de la relación entre rotación y factores como salario, antigüedad y horas extras
+- Identificación de perfiles con mayor riesgo de abandono
+- Visualización clara para apoyar la interpretación de resultados
 
 ---
 ## 5. Hallazgos
-A partir de las consultas realizadas sobre la base de datos se identificaron algunos patrones:
-- El catálogo de Netflix creció significativamente después del año 2000, con una mezcla de películas y series.
+A partir del análisis, se identificaron algunos patrones:
+- La rotación es más alta durante los primeros 3 años de antigüedad.
+- Empleados con salarios bajos y que realizan horas extras tienen mayor probabilidad de rotar.
+- La educación influye en la permanencia: mayor nivel educativo se asocia con mayor estabilidad.
+- Se identificaron perfiles de riesgo que pueden orientar acciones de retención temprana.
